@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Send my location to SAR</title>
+</head>
+<body onLoad="getLocation()">
+<p><font size="20">If asked, allow share location.</font></p>
+
+<p id="demo"></p>
+
+<script>
+String.prototype.format = function()
+{
+   var content = this;
+   for (var i=0; i < arguments.length; i++)
+   {
+        var replacement = '{' + i + '}';
+        content = content.replace(replacement, arguments[i]);  
+   }
+   return content;
+};
+
+
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition); 
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+
+var emailString = "mailto:XXXXSAR_EMAILXXXX@gmail.com?subject={0},{1}&body=I am at {2},{3}".format(position.coords.latitude,position.coords.longitude,position.coords.latitude,position.coords.longitude);
+ if(navigator.userAgent.match(/Android/i)) 
+{
+    window.location=emailString;  <!--Redirects dont work on my Android phone for some reason. It could be blocked for security -->    
+}
+  else
+{
+    document.location.href = emailString;}
+
+    x.innerHTML = "<font size=\"20\">Latitude: " + position.coords.latitude + 
+   		  "<br>Longitude: " + position.coords.longitude +
+                  "<br><b><a href=\"{0}\">Email this location to Search & Rescue</a></font>".format(emailString);
+}
+</script>
+</body>
+</html>
