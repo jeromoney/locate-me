@@ -33,7 +33,7 @@ function getLocation() {
 
 function showPosition(position) {
 
-var emailString = "mailto:XXXXSAR_EMAILXXXX@gmail.com?subject={0},{1}&body=I am at {2},{3} with accuracy {4}. Altitude {5}. Altitude Accuracy {6}".format(position.coords.latitude,position.coords.longitude,position.coords.latitude,position.coords.longitude,position.coords.accuracy,position.coords.altitude,position.coords.altitudeAccuracy);
+var emailString = "mailto:XXXXSAR_EMAILXXXX@gmail.com?subject={0},{1}&body=I am at {2},{3} with accuracy {4}.".format(position.coords.latitude,position.coords.longitude,position.coords.latitude,position.coords.longitude,position.coords.accuracy);
  if(navigator.userAgent.match(/Android/i)) 
 {
     window.location=emailString;  <!--Redirects dont work on my Android phone for some reason. It could be blocked for security -->    
@@ -44,7 +44,6 @@ var emailString = "mailto:XXXXSAR_EMAILXXXX@gmail.com?subject={0},{1}&body=I am 
 
     x.innerHTML = "<font size=\"20\">Latitude: " + position.coords.latitude + 
    		  "<br>Longitude: " + position.coords.longitude +
-   		  "<br>Altitude: " + position.coords.altitude +
    		  "<br>Accuracy: " + position.coords.accuracy +
                   "<br><b><a href=\"{0}\">Email this location to Search & Rescue</a></font>".format(emailString);
 }
