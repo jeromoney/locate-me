@@ -33,7 +33,7 @@ function getLocation() {
 
 function showPosition(position) {
 
-var emailString = "mailto:XXXXSAR_EMAILXXXX@gmail.com?subject={0},{1}&body=I am at {2},{3}".format(position.coords.latitude,position.coords.longitude,position.coords.latitude,position.coords.longitude);
+var emailString = "mailto:XXXXSAR_EMAILXXXX@gmail.com?subject={0},{1}&body=I am at {2},{3},   {4}".format(position.coords.latitude,position.coords.longitude,position.coords.latitude,position.coords.longitude,position.coords.accuracy);
  if(navigator.userAgent.match(/Android/i)) 
 {
     window.location=emailString;  <!--Redirects dont work on my Android phone for some reason. It could be blocked for security -->    
